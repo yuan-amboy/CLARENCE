@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 750px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 600px;
+        }
+        
+        .form-header {
+            background-color: #222;
+            color: #fff;
+            padding: 25px 40px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .form-tabs {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .form-tab {
+            flex-grow: 1;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .form-tab.active {
+            color: #fff;
+            border-bottom: 3px solid #fff;
+        }
+        
+        .form-content {
+            padding: 40px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-field {
+            position: relative;
+        }
+        
+        .input-field input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+        
+        .input-field input:focus {
+            border-color: #222;
+            outline: none;
+        }
+        
+        .input-field i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .input-field input:focus + i {
+            color: #222;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember input {
+            margin-right: 8px;
+        }
+        
+        .forgot-link {
+            color: #222;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .forgot-link:hover {
+            color: #888;
+        }
+        
+        .btn {
+            background-color: #222;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #333;
+        }
+        
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .social-login h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .social-login h3::before,
+        .social-login h3::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: #ddd;
+        }
+        
+        .social-login h3::before {
+            left: 0;
+        }
+        
+        .social-login h3::after {
+            right: 0;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #555;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-3px);
+        }
+        
+        .register-link, .login-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+        }
+        
+        .register-link a, .login-link a {
+            color: #222;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .register-link a:hover, .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                min-height: auto;
+            }
+            
+            .form-content {
+                padding: 30px 20px;
+            }
+            
+            .social-login h3::before,
+            .social-login h3::after {
+                width: 25%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-header {
+                padding: 20px;
+            }
+            
+            .form-content {
+                padding: 20px 15px;
+            }
+            
+            .input-field input {
+                padding: 12px 12px 12px 40px;
+            }
+            
+            .social-login h3::before,
+            .social-login h3::after {
+                width: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <div class="logo">DOLLAR SIGN</div>
+            <div class="form-tabs">
+                <div class="form-tab active" data-tab="login">Login</div>
+                <div class="form-tab" data-tab="register">Register</div>
+            </div>
+        </div>
+        
+        <div class="form-content">
+            <!-- Login Form -->
+            <form class="form-section active" id="login-form">
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <div class="input-field">
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <div class="input-field">
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                
+                <div class="remember-forgot">
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn">Login</button>
+                
+                <div class="social-login">
+                    <h3>Or login with</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="register-link">
+                    Don't have an account? <a href="#" class="switch-form" data-form="register">Register now</a><br><br>
+
+                    <a href="">Continue as a Guest</a>
+                </div>
+            </form>
+            
+            <!-- Registration Form -->
+            <form class="form-section" id="register-form">
+                <div class="input-group">
+                    <label for="register-name">Full Name</label>
+                    <div class="input-field">
+                        <input type="text" id="register-name" placeholder="Enter your full name" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="register-email">Email</label>
+                    <div class="input-field">
+                        <input type="email" id="register-email" placeholder="Enter your email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="register-password">Password</label>
+                    <div class="input-field">
+                        <input type="password" id="register-password" placeholder="Create a password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="register-confirm">Confirm Password</label>
+                    <div class="input-field">
+                        <input type="password" id="register-confirm" placeholder="Confirm your password" required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                
+                <div class="remember">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the Terms and Conditions</label>
+                </div>
+                
+                <button type="submit" class="btn" style="margin-top: 25px;">Create Account</button>
+                
+                <div class="social-login">
+                    <h3>Or register with</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-apple"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="login-link">
+                    Already have an account? <a href="#" class="switch-form" data-form="login">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching
+        const tabs = document.querySelectorAll('.form-tab');
+        const forms = document.querySelectorAll('.form-section');
+        const switchLinks = document.querySelectorAll('.switch-form');
+        
+        function switchTab(tabId) {
+            // Remove active class from all tabs and forms
+            tabs.forEach(tab => tab.classList.remove('active'));
+            forms.forEach(form => form.classList.remove('active'));
+            
+            // Add active class to selected tab and form
+            document.querySelector(`.form-tab[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(`${tabId}-form`).classList.add('active');
+        }
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+        
+        switchLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const formId = link.getAttribute('data-form');
+                switchTab(formId);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URBAN THREADS | Streetwear Collection</title>
+    <!-- Add this inside your <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f8f8;
+            color: #222;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #222;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #888;
+        }
+        
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-icon {
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            position: absolute;
+            text-align: center;
+            color: #fff;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #222;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            border: 2px solid #222;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: #222;
+        }
+        
+        /* Featured Collection */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 0 5%;
+        }
+        
+        .product {
+            background-color: #fff;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .product:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 5%;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .newsletter p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .newsletter-btn {
+            padding: 0 25px;
+            background-color: #fff;
+            color: #222;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 60px 5% 30px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #222;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: #ddd;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                margin-bottom: 10px;
+                padding: 15px;
+            }
+            
+            .newsletter-btn {
+                padding: 15px;
+                width: 100%;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="header-container">
+        <div class="logo">URBAN THREADS</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Collections</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <div class="nav-icons">
+                    <div class="nav-icon"><i class="fas fa-search"></i></div>
+                    <div class="nav-icon"><i class="fas fa-user"></i></div>
+                    <div class="nav-icon"><i class="fas fa-shopping-cart"></i></div>
+                </div>
+            </ul>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+
+        </nav>
+        
+    </div>
+</header>
+
+
+    <section class="hero">
+        <img src="/api/placeholder/1200/800" alt="Hero Image" class="hero-image">
+        <div class="hero-content">
+            <h1>Spring Collection 2025</h1>
+            <p>Express your individuality with our latest streetwear designs.</p>
+            <a href="#" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <h2 class="section-title">Featured Products</h2>
+    <div class="products">
+        <div class="product">
+            <img src="/api/placeholder/400/300" alt="Product 1" class="product-img">
+            <div class="product-info">
+                <h3 class="product-title">Urban Classic Tee</h3>
+                <p class="product-price">$45.00</p>
+            </div>
+        </div>
+        <div class="product">
+            <img src="/api/placeholder/400/300" alt="Product 2" class="product-img">
+            <div class="product-info">
+                <h3 class="product-title">Street Hoodie</h3>
+                <p class="product-price">$85.00</p>
+            </div>
+        </div>
+        <div class="product">
+            <img src="/api/placeholder/400/300" alt="Product 3" class="product-img">
+            <div class="product-info">
+                <h3 class="product-title">Graphic Sweatshirt</h3>
+                <p class="product-price">$65.00</p>
+            </div>
+        </div>
+        <div class="product">
+            <img src="/api/placeholder/400/300" alt="Product 4" class="product-img">
+            <div class="product-info">
+                <h3 class="product-title">Cargo Pants</h3>
+                <p class="product-price">$90.00</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="about">
+        <h2 class="section-title">Our Story</h2>
+        <p>URBAN THREADS was founded with a simple mission: to create authentic streetwear that empowers self-expression. Our designs are inspired by urban culture, art, and the spirit of youth.</p>
+        <p>Each piece is crafted with attention to detail, using premium materials that ensure both style and comfort. We believe in sustainable fashion and ethical manufacturing practices.</p>
+        <a href="#" class="btn">Learn More</a>
+    </section>
+
+    <section class="newsletter">
+        <h2>Join Our Community</h2>
+        <p>Subscribe to our newsletter and be the first to know about new collections, exclusive offers, and upcoming events.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Your Email Address" class="newsletter-input" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Tees</a></li>
+                    <li><a href="#">Hoodies</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Info</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Stores</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow Us</h3>
+                <p>Stay connected with us on social media for updates and inspiration.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">IG</a>
+                    <a href="#" class="social-icon">FB</a>
+                    <a href="#" class="social-icon">TW</a>
+                    <a href="#" class="social-icon">TK</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 URBAN THREADS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            if (navMenu.style.display === 'flex') {
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.position = 'absolute';
+                navMenu.style.top = '100%';
+                navMenu.style.left = '0';
+                navMenu.style.width = '100%';
+                navMenu.style.backgroundColor = '#fff';
+                navMenu.style.padding = '20px';
+                navMenu.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Responsive adjustments
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navMenu.style.display = 'flex';
+                navMenu.style.flexDirection = 'row';
+                navMenu.style.position = 'static';
+                navMenu.style.padding = '0';
+                navMenu.style.boxShadow = 'none';
+            } else {
+                navMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
